@@ -8,3 +8,4 @@ contextBridge.exposeInMainWorld('electronAPI', {
   onLinksUpdated: (callback) => ipcRenderer.on('links-updated', (event, links) => callback(links))
 
 });
+

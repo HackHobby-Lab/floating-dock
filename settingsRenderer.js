@@ -67,7 +67,7 @@ addBtn.addEventListener('click', () => {
 saveBtn.addEventListener('click', () => {
   // send to main
   window.settingsAPI.saveLinks(links);
-  alert('Links saved');
+//   alert('Links saved');
 });
 
 // load existing links

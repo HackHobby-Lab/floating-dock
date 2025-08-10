@@ -3,50 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <title>Floating Dock</title>
- <style>
-  body {
-    background: rgba(30, 30, 30, 0.8);
-    color: white;
-    font-family: sans-serif;
-    padding: 10px;
-    -webkit-app-region: drag; /* draggable background */
-    user-select: none; /* Avoid accidental text selection */
-  }
-   #linksContainer{display:flex;gap:10px}
-    a.button{
-      display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;text-decoration:none;color:white;background:transparent;border:1px solid rgba(255,255,255,0.06);
-      -webkit-app-region: no-drag;user-select:none;font-size:13px
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+      -webkit-app-region: drag;
+      user-select: none;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.25);
+      margin: 0;
+      padding: 2px;
+      padding-right: 5px;
+      background: rgba(30, 30, 30, 0.3);
+      backdrop-filter: blur(10px);
+      overflow:hidden; /* Enable scrolling */
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;      /* Firefox */
+      -ms-overflow-style: none;   /* IE 10+ */
     }
-    a.button:hover{background:rgba(255,255,255,0.04)}
 
-  a {
-    color: #4CAF50;
-    text-decoration: none;
-    display: block;
-    margin: 8px 0;
-    -webkit-app-region: no-drag; /* Links remain clickable */
-  }
+    body::-webkit-scrollbar {
+      display: none;              /* Chrome, Safari, Opera */
+    }
+     html {
+      scrollbar-width: thin;
+      scrollbar-color: #222 #111;
+    }
+    html::-webkit-scrollbar {
+      width: 3px;
+      background: #111;
+    }
+    html::-webkit-scrollbar-thumb {
+      background: #222;
+      border-radius: 4px;
+    }
 
-  a:hover {
-    text-decoration: underline;
-  }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(30, 30, 30); 
+      /* backdrop-filter: blur(10px); */
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center;
+      margin-bottom: 4px;
+      height: 20px; 
+    }
+
+    header h3 {
+      font-size: 14px;
+      margin: 0;
+      font-weight: normal;
+    }
+
     .settings-btn {
-      width: 20px;
-      height: 20px;
+      width: 12px;
+      height: 12px;
+      align-self:  center;
       cursor: pointer;
       -webkit-app-region: no-drag;
+      opacity: 1;
+      transition: opacity 0.1s;
     }
-</style>
 
+    .settings-btn:hover {
+      opacity: 1;
+    }
+
+    #linksContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden; 
+      max-height: none;  
+    }
+    #linksContainer::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+
+    a.button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 6px;
+      /* border-radius: 8px; */
+      text-decoration: none;
+      color: white;
+      /* background: rgba(255, 255, 255, 0.05); */
+      /* border: 1px solid rgba(255, 255, 255, 0.08); */
+      -webkit-app-region: no-drag;
+      user-select: none;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+
+    /* a.button:hover {
+      /* background: rgba(255, 255, 255, 0.15); */
+     
+ 
+
+    a.button img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%; 
+  object-fit: cover; 
+}
+  </style>
 </head>
 <body>
-  <h3>My Dock</h3>
-  <div id="linksContainer"></div>
-  <a href="https://docs.google.com/document/" target="_blank" id="linkd">Google Docs</a>
-  <a href="https://sheets.google.com/" target="_blank">Google Sheets</a>
-  <a href="https://www.github.com/" target="_blank">GitHub</a>
+  <header>
+    <!-- <h3>My Dock</h3> -->
+    <img src="assets/gear.png" alt="Settings" class="settings-btn" id="settingsBtn">
+  </header>
 
-  <img src="assets/gear.png" alt="Settings" class="settings-btn" id="settingsBtn">
+  <!-- Empty container, will be filled by renderer.js -->
+  <div id="linksContainer"></div>
+
   <script src="renderer.js"></script>
 </body>
 </html>

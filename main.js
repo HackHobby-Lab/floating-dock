@@ -1,4 +1,4 @@
-const { app, BrowserWindow, shell, ipcMain } = require('electron');
+const { app, BrowserWindow, shell, ipcMain, screen  } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -29,14 +29,24 @@ function saveLinks(links) {
   // notify main window
   if (mainWindow) mainWindow.webContents.send('update-links', links);
 }
-
 function createMainWindow() {
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { width: screenWidth, height: screenHeight } = primaryDisplay.workAreaSize;
+
+  const windowWidth = 60; 
+  const windowHeight = 300; 
+
   mainWindow = new BrowserWindow({
-    width: 420,
-    height: 300,
+    width: windowWidth,
+    height: windowHeight,
+    x: screenWidth - windowWidth - 5, // 5px margin from right
+    y: Math.floor((screenHeight - windowHeight) / 2),
     alwaysOnTop: true,
     frame: false,
     transparent: true,
+    hasShadow: false,
+    roundedCorners: true,
+    roundedCornersRadius: 16,
     resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -44,7 +54,6 @@ function createMainWindow() {
       nodeIntegration: false
     }
   });
-
   mainWindow.loadFile('index.html');
 
   // Open external links in default browser
@@ -62,23 +71,30 @@ function createMainWindow() {
 
   // send initial links once ready
   mainWindow.webContents.on('did-finish-load', () => {
-    mainWindow.webContents.send('update-links', loadLinks());
+    const links = loadLinks();
+    mainWindow.webContents.send('update-links', links);
+  });
+
+  // Listen for updates to links
+  ipcMain.on('update-links', (event, links) => {
+  
   });
 }
+
 
 function createSettingsWindow() {
   if (settingsWindow) {
     settingsWindow.focus();
     return;
   }
-
   settingsWindow = new BrowserWindow({
-    width: 500,
+    width: 600,
     height: 420,
-    title: 'Dock Settings',
-    parent: mainWindow,
-    modal: false,
-    resizable: false,
+    icon: path.join(__dirname, 'assets', 'gear.png'),
+    frame: true,           // No toolbar/titlebar
+    transparent: true,     
+    resizable: true,
+    // roundedCorners: true,
     webPreferences: {
       preload: path.join(__dirname, 'settingsPreload.js'),
       contextIsolation: true,
@@ -87,10 +103,7 @@ function createSettingsWindow() {
   });
 
   settingsWindow.loadFile('settings.html');
-
-  settingsWindow.on('closed', () => {
-    settingsWindow = null;
-  });
+  settingsWindow.on('closed', () => { settingsWindow = null; });
 }
 
 app.whenReady().then(() => {
