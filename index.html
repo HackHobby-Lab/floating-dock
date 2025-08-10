@@ -9,9 +9,15 @@
     color: white;
     font-family: sans-serif;
     padding: 10px;
-    -webkit-app-region: drag; /* 🚀 Makes background draggable */
+    -webkit-app-region: drag; /* draggable background */
     user-select: none; /* Avoid accidental text selection */
   }
+   #linksContainer{display:flex;gap:10px}
+    a.button{
+      display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;text-decoration:none;color:white;background:transparent;border:1px solid rgba(255,255,255,0.06);
+      -webkit-app-region: no-drag;user-select:none;font-size:13px
+    }
+    a.button:hover{background:rgba(255,255,255,0.04)}
 
   a {
     color: #4CAF50;
@@ -24,13 +30,23 @@
   a:hover {
     text-decoration: underline;
   }
+    .settings-btn {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      -webkit-app-region: no-drag;
+    }
 </style>
 
 </head>
 <body>
   <h3>My Dock</h3>
-  <a href="https://docs.google.com/document/d/1FpYK7yjZLpd77NGBv3qN3rFCR2aTTrmNxnXFxcTdFYM/edit?tab=t.0" target="_blank">Google Docs</a>
+  <div id="linksContainer"></div>
+  <a href="https://docs.google.com/document/" target="_blank" id="linkd">Google Docs</a>
   <a href="https://sheets.google.com/" target="_blank">Google Sheets</a>
   <a href="https://www.github.com/" target="_blank">GitHub</a>
+
+  <img src="assets/gear.png" alt="Settings" class="settings-btn" id="settingsBtn">
+  <script src="renderer.js"></script>
 </body>
 </html>

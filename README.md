@@ -1,9 +1,9 @@
 # Floating Dock
-
+(^_^)
 A sleek, **always-on-top floating dock** for quick access to your most-used websites such as Google Docs, Sheets, GitHub, or anything else you need daily.  
 Built with [Electron](https://www.electronjs.org/) for cross-platform desktop use.
 
----
+
 ##  Features
 - Always stays on top of all windows
 - Draggable anywhere on your desktop
@@ -11,12 +11,12 @@ Built with [Electron](https://www.electronjs.org/) for cross-platform desktop us
 - Minimal & lightweight
 - Easily customizable 
 
----
+
 ## Requirements
 - [Node.js](https://nodejs.org/) 
 - npm 
 
----
+
 
 ## Installation & Setup
 
@@ -31,7 +31,7 @@ Built with [Electron](https://www.electronjs.org/) for cross-platform desktop us
    ```bash
    npm start
 
----
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)  
