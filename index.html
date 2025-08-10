@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Floating Dock</title>
+ <style>
+  body {
+    background: rgba(30, 30, 30, 0.8);
+    color: white;
+    font-family: sans-serif;
+    padding: 10px;
+    -webkit-app-region: drag; /* 🚀 Makes background draggable */
+    user-select: none; /* Avoid accidental text selection */
+  }
+
+  a {
+    color: #4CAF50;
+    text-decoration: none;
+    display: block;
+    margin: 8px 0;
+    -webkit-app-region: no-drag; /* Links remain clickable */
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+</head>
+<body>
+  <h3>My Dock</h3>
+  <a href="https://docs.google.com/document/d/1FpYK7yjZLpd77NGBv3qN3rFCR2aTTrmNxnXFxcTdFYM/edit?tab=t.0" target="_blank">Google Docs</a>
+  <a href="https://sheets.google.com/" target="_blank">Google Sheets</a>
+  <a href="https://www.github.com/" target="_blank">GitHub</a>
+</body>
+</html>
