@@ -39,6 +39,7 @@ function createMainWindow() {
   mainWindow = new BrowserWindow({
     width: windowWidth,
     height: windowHeight,
+    icon: path.join(__dirname, 'assets', 'link.png'),
     x: screenWidth - windowWidth - 5, // 5px margin from right
     y: Math.floor((screenHeight - windowHeight) / 2),
     alwaysOnTop: true,
