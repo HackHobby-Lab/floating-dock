@@ -3,7 +3,10 @@ name: Build and Release Floating Dock
 on:
   push:
     tags:
-      - 'v*' # Runs only when you push a tag like v1.0.0
+      - 'v*' # Runs only on version tags
+
+permissions:
+  contents: write  # ✅ Allow workflow to create GitHub releases
 
 jobs:
   build:
@@ -23,6 +26,9 @@ jobs:
 
       - name: Build app
         run: npm run dist
+
+      - name: Check dist output
+        run: dir dist
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1

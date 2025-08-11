@@ -1,5 +1,5 @@
 {
-  "name": "floating-dock",
+  "name": "dockly",
   "version": "1.0.0",
   "description": "A floating dock for quick access to links",
   "main": "main.js",
@@ -7,8 +7,8 @@
     "start": "electron .",
     "dist": "electron-builder --win portable"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["docker", "dock", "links", "electron", "floating dock", "quick access", "productivity", "utility", "desktop app", "cross-platform", "portable", "customizable", "user-friendly", "open source", "lightweight", "modern", "responsive", "dock application", "taskbar", "launcher", "shortcut", "accessibility", "navigation", "tools", "applications", "links manager" , "dock manager", "system tray", "floating window", "task management", "productivity tool", "desktop utility"],
+  "author": "Hamza Awan",
   "license": "ISC",
   "devDependencies": {
     "electron": "^37.2.6",
@@ -16,7 +16,8 @@
   },
   "build": {
     "appId": "com.awan.floatingdock",
-    "productName": "Floating Dock",
+    "productName": "Dockly",
+    "artifactName": "Dockly.${ext}",
     "asar": true,
     "files": [
       "**/*",
